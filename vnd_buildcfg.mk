@@ -12,8 +12,12 @@ else
  SRC := $(call my-dir)/include/vnd_generic.txt
 endif
 endif
+<<<<<<< HEAD
 endif
 GEN := $(intermediates)/vnd_buildcfg.h
+=======
+GEN := $(generated_sources)/vnd_buildcfg.h
+>>>>>>> 85cbcc7... libbt: Add support for board-specific configuration
 TOOL := $(TOP_DIR)external/bluetooth/bluedroid/tools/gen-buildcfg.sh
 
 $(GEN): PRIVATE_PATH := $(call my-dir)
