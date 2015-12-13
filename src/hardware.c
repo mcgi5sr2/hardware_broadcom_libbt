@@ -39,8 +39,10 @@
 #include <ctype.h>
 #include <cutils/properties.h>
 #include <stdlib.h>
+#include <string.h>
 #include "bt_hci_bdroid.h"
 #include "bt_vendor_brcm.h"
+#include "hci_audio.h"
 #include "userial.h"
 #include "userial_vendor.h"
 #include "upio.h"
@@ -1309,9 +1311,10 @@ uint32_t hw_lpm_get_idle_timeout(void)
      */
     timeout_ms = (uint32_t)lpm_param.host_stack_idle_threshold \
                             * LPM_IDLE_TIMEOUT_MULTIPLE;
-
     if (strstr(hw_cfg_cb.local_chip_name, "BCM4325") != NULL)
         timeout_ms *= 25; // 12.5 or 25 ?
+    else if (strstr(hw_cfg_cb.local_chip_name, "BCM4358") != NULL)
+        timeout_ms *= 50;
     else
         timeout_ms *= 300;
 
